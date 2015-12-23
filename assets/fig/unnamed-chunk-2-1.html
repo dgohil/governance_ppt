@@ -1,0 +1,3557 @@
+<!doctype HTML>
+<meta charset = 'utf-8'>
+<html>
+  <head>
+    <link rel='stylesheet' href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel='stylesheet' href='http://nvd3.org/assets/css/nv.d3.css'>
+    
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js' type='text/javascript'></script>
+    <script src='http://d3js.org/d3.v3.min.js' type='text/javascript'></script>
+    <script src='http://timelyportfolio.github.io/rCharts_nvd3_tests/libraries/widgets/nvd3/js/nv.d3.min-new.js' type='text/javascript'></script>
+    <script src='http://nvd3.org/assets/lib/fisheye.js' type='text/javascript'></script>
+    
+     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
+     <script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+    
+    <style>
+    .rChart {
+      display: block
+      margin: auto auto;
+      width: 100%;
+      height: 400px;
+    }
+    .bs-docs-example:after {
+      content: "";
+      background: transparent;
+      border: none;
+    }
+    </style>
+    
+  </head>
+  <body ng-app>
+      
+    <div class='container' ng-controller="DemoCtrl">
+  <div class='row'>
+    <div class='col-md-3'>
+      <form class='well'>
+        
+        <select
+          ng-model="selected" 
+          ng-options="c as c.value group by c.variable for c in filters" 
+          class="form-control" multiple size="10">
+        </select>
+      </form>
+    </div>
+    <div class='col-md-8'>
+      <div class="bs-docs-example">
+        <div id='chart2' class='rChart '>
+          <svg></svg>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+function DemoCtrl($scope){
+  $scope.opts = {
+ "dom": "chart2",
+"width":    800,
+"height":    400,
+"x": "conservancy",
+"y": "percentage",
+"group": "gov_parameter",
+"type": "multiBarChart",
+"id": "chart2" 
+}
+  $scope.data = [
+ {
+ "X": 1,
+"gov_parameter": "performance_score",
+"year": "2012",
+"gov_score": 0.5172413793103,
+"conservancy": "Biliqo_Bulesa",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 2,
+"gov_parameter": "performance_score",
+"year": "2012",
+"gov_score": 0.6551724137931,
+"conservancy": "Il_Ngwesi",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 3,
+"gov_parameter": "performance_score",
+"year": "2012",
+"gov_score": 0.3448275862069,
+"conservancy": "Ishaqbini",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 4,
+"gov_parameter": "performance_score",
+"year": "2012",
+"gov_score": 0.8965517241379,
+"conservancy": "Kalama",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 5,
+"gov_parameter": "performance_score",
+"year": "2012",
+"gov_score": 0.4827586206897,
+"conservancy": "Lekurruki",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 6,
+"gov_parameter": "performance_score",
+"year": "2012",
+"gov_score": 0.448275862069,
+"conservancy": "Ltungai",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 7,
+"gov_parameter": "performance_score",
+"year": "2012",
+"gov_score": 0.6206896551724,
+"conservancy": "Meibae",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 8,
+"gov_parameter": "performance_score",
+"year": "2012",
+"gov_score": 0.6896551724138,
+"conservancy": "Melako",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 9,
+"gov_parameter": "performance_score",
+"year": "2012",
+"gov_score": 0.7586206896552,
+"conservancy": "Mpus_Kutuk",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 10,
+"gov_parameter": "performance_score",
+"year": "2012",
+"gov_score": 0.8620689655172,
+"conservancy": "Naibunga",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 11,
+"gov_parameter": "performance_score",
+"year": "2012",
+"gov_score": 0.8275862068966,
+"conservancy": "Namunyak",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 12,
+"gov_parameter": "performance_score",
+"year": "2012",
+"gov_score": 0.5862068965517,
+"conservancy": "Ngare_Ndare",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 13,
+"gov_parameter": "performance_score",
+"year": "2012",
+"gov_score": 0.3103448275862,
+"conservancy": "Ruko",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 14,
+"gov_parameter": "performance_score",
+"year": "2012",
+"gov_score": 0.4137931034483,
+"conservancy": "Sera",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 15,
+"gov_parameter": "performance_score",
+"year": "2012",
+"gov_score": 0.1379310344828,
+"conservancy": "West_Gate",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 16,
+"gov_parameter": "performance_score",
+"year": "2012",
+"gov_score": 0.5172413793103,
+"conservancy": "Leparua",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 17,
+"gov_parameter": "performance_score",
+"year": "2012",
+"gov_score": 0.6551724137931,
+"conservancy": "Nakuprat_Gotu",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 18,
+"gov_parameter": "performance_score",
+"year": "2012",
+"gov_score": 0.3448275862069,
+"conservancy": "Ndera",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 19,
+"gov_parameter": "performance_score",
+"year": "2012",
+"gov_score": 0.8965517241379,
+"conservancy": "Nasuulu",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 20,
+"gov_parameter": "performance_score",
+"year": "2012",
+"gov_score": 0.4827586206897,
+"conservancy": "Shurr",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 21,
+"gov_parameter": "performance_score",
+"year": "2012",
+"gov_score": 0.448275862069,
+"conservancy": "Songa",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 22,
+"gov_parameter": "performance_score",
+"year": "2012",
+"gov_score": 0.6206896551724,
+"conservancy": "Jaldessa",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 23,
+"gov_parameter": "performance_score",
+"year": "2013",
+"gov_score": 0.551724137931,
+"conservancy": "Biliqo_Bulesa",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 24,
+"gov_parameter": "performance_score",
+"year": "2013",
+"gov_score": 0.6896551724138,
+"conservancy": "Il_Ngwesi",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 25,
+"gov_parameter": "performance_score",
+"year": "2013",
+"gov_score": 0.5172413793103,
+"conservancy": "Ishaqbini",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 26,
+"gov_parameter": "performance_score",
+"year": "2013",
+"gov_score": 0.5862068965517,
+"conservancy": "Kalama",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 27,
+"gov_parameter": "performance_score",
+"year": "2013",
+"gov_score": 0.9310344827586,
+"conservancy": "Lekurruki",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 28,
+"gov_parameter": "performance_score",
+"year": "2013",
+"gov_score": 0.4827586206897,
+"conservancy": "Ltungai",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 29,
+"gov_parameter": "performance_score",
+"year": "2013",
+"gov_score": 0.7931034482759,
+"conservancy": "Meibae",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 30,
+"gov_parameter": "performance_score",
+"year": "2013",
+"gov_score": 0.8275862068966,
+"conservancy": "Melako",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 31,
+"gov_parameter": "performance_score",
+"year": "2013",
+"gov_score": 0.8620689655172,
+"conservancy": "Mpus_Kutuk",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 32,
+"gov_parameter": "performance_score",
+"year": "2013",
+"gov_score": 0.448275862069,
+"conservancy": "Naibunga",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 33,
+"gov_parameter": "performance_score",
+"year": "2013",
+"gov_score": 0.6551724137931,
+"conservancy": "Namunyak",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 34,
+"gov_parameter": "performance_score",
+"year": "2013",
+"gov_score": 0.2413793103448,
+"conservancy": "Ngare_Ndare",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 35,
+"gov_parameter": "performance_score",
+"year": "2013",
+"gov_score": 0.2758620689655,
+"conservancy": "Ruko",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 36,
+"gov_parameter": "performance_score",
+"year": "2013",
+"gov_score": 0.551724137931,
+"conservancy": "Sera",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 37,
+"gov_parameter": "performance_score",
+"year": "2013",
+"gov_score": 0.6896551724138,
+"conservancy": "West_Gate",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 38,
+"gov_parameter": "performance_score",
+"year": "2013",
+"gov_score": 0.5172413793103,
+"conservancy": "Leparua",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 39,
+"gov_parameter": "performance_score",
+"year": "2013",
+"gov_score": 0.5862068965517,
+"conservancy": "Nakuprat_Gotu",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 40,
+"gov_parameter": "performance_score",
+"year": "2013",
+"gov_score": 0.9310344827586,
+"conservancy": "Ndera",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 41,
+"gov_parameter": "performance_score",
+"year": "2013",
+"gov_score": 0.4827586206897,
+"conservancy": "Nasuulu",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 42,
+"gov_parameter": "performance_score",
+"year": "2013",
+"gov_score": 0.7931034482759,
+"conservancy": "Shurr",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 43,
+"gov_parameter": "performance_score",
+"year": "2013",
+"gov_score": 0.8275862068966,
+"conservancy": "Songa",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 44,
+"gov_parameter": "performance_score",
+"year": "2013",
+"gov_score": 0.8620689655172,
+"conservancy": "Jaldessa",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 45,
+"gov_parameter": "performance_score",
+"year": "2014",
+"gov_score":         0.4241,
+"conservancy": "Biliqo_Bulesa",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 46,
+"gov_parameter": "performance_score",
+"year": "2014",
+"gov_score":         0.5759,
+"conservancy": "Il_Ngwesi",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 47,
+"gov_parameter": "performance_score",
+"year": "2014",
+"gov_score":         0.6646,
+"conservancy": "Ishaqbini",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 48,
+"gov_parameter": "performance_score",
+"year": "2014",
+"gov_score":         0.3734,
+"conservancy": "Kalama",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 49,
+"gov_parameter": "performance_score",
+"year": "2014",
+"gov_score":         0.5633,
+"conservancy": "Lekurruki",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 50,
+"gov_parameter": "performance_score",
+"year": "2014",
+"gov_score":         0.3987,
+"conservancy": "Ltungai",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 51,
+"gov_parameter": "performance_score",
+"year": "2014",
+"gov_score":          0.519,
+"conservancy": "Meibae",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 52,
+"gov_parameter": "performance_score",
+"year": "2014",
+"gov_score":          0.462,
+"conservancy": "Melako",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 53,
+"gov_parameter": "performance_score",
+"year": "2014",
+"gov_score":         0.2658,
+"conservancy": "Mpus_Kutuk",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 54,
+"gov_parameter": "performance_score",
+"year": "2014",
+"gov_score":         0.5063,
+"conservancy": "Naibunga",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 55,
+"gov_parameter": "performance_score",
+"year": "2014",
+"gov_score":         0.6076,
+"conservancy": "Namunyak",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 56,
+"gov_parameter": "performance_score",
+"year": "2014",
+"gov_score":         0.5443,
+"conservancy": "Ngare_Ndare",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 57,
+"gov_parameter": "performance_score",
+"year": "2014",
+"gov_score":         0.5253,
+"conservancy": "Ruko",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 58,
+"gov_parameter": "performance_score",
+"year": "2014",
+"gov_score":         0.4051,
+"conservancy": "Sera",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 59,
+"gov_parameter": "performance_score",
+"year": "2014",
+"gov_score":         0.4557,
+"conservancy": "West_Gate",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 60,
+"gov_parameter": "performance_score",
+"year": "2014",
+"gov_score":         0.4177,
+"conservancy": "Leparua",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 61,
+"gov_parameter": "performance_score",
+"year": "2014",
+"gov_score":         0.5316,
+"conservancy": "Nakuprat_Gotu",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 62,
+"gov_parameter": "performance_score",
+"year": "2014",
+"gov_score":         0.3671,
+"conservancy": "Ndera",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 63,
+"gov_parameter": "performance_score",
+"year": "2014",
+"gov_score":         0.3291,
+"conservancy": "Nasuulu",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 64,
+"gov_parameter": "performance_score",
+"year": "2014",
+"gov_score":         0.2848,
+"conservancy": "Shurr",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 65,
+"gov_parameter": "performance_score",
+"year": "2014",
+"gov_score":         0.4241,
+"conservancy": "Songa",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 66,
+"gov_parameter": "performance_score",
+"year": "2014",
+"gov_score":         0.5759,
+"conservancy": "Jaldessa",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 67,
+"gov_parameter": "performance_score",
+"year": "2014",
+"gov_score":         0.6646,
+"conservancy": "Pate",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 68,
+"gov_parameter": "performance_score",
+"year": "2014",
+"gov_score":         0.3734,
+"conservancy": "Kiunga",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 69,
+"gov_parameter": "performance_score",
+"year": "2014",
+"gov_score":         0.5633,
+"conservancy": "Tana_River_Delta",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 70,
+"gov_parameter": "performance_score",
+"year": "2014",
+"gov_score":         0.3987,
+"conservancy": "Hanshack_Nyogoro",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 71,
+"gov_parameter": "performance_score",
+"year": "2014",
+"gov_score":          0.519,
+"conservancy": "Awer",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 72,
+"gov_parameter": "finc",
+"year": "2012",
+"gov_score":              4,
+"conservancy": "Biliqo_Bulesa",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 73,
+"gov_parameter": "finc",
+"year": "2012",
+"gov_score":              6,
+"conservancy": "Il_Ngwesi",
+"percentage": 0.1818181818182 
+},
+{
+ "X": 74,
+"gov_parameter": "finc",
+"year": "2012",
+"gov_score":              3,
+"conservancy": "Ishaqbini",
+"percentage": 0.2272727272727 
+},
+{
+ "X": 75,
+"gov_parameter": "finc",
+"year": "2012",
+"gov_score":              7,
+"conservancy": "Kalama",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 76,
+"gov_parameter": "finc",
+"year": "2012",
+"gov_score":              5,
+"conservancy": "Lekurruki",
+"percentage": 0.2272727272727 
+},
+{
+ "X": 77,
+"gov_parameter": "finc",
+"year": "2012",
+"gov_score":              0,
+"conservancy": "Ltungai",
+"percentage": 0.1818181818182 
+},
+{
+ "X": 78,
+"gov_parameter": "finc",
+"year": "2012",
+"gov_score":              4,
+"conservancy": "Meibae",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 79,
+"gov_parameter": "finc",
+"year": "2012",
+"gov_score":              6,
+"conservancy": "Melako",
+"percentage": 0.1818181818182 
+},
+{
+ "X": 80,
+"gov_parameter": "finc",
+"year": "2012",
+"gov_score":              3,
+"conservancy": "Mpus_Kutuk",
+"percentage": 0.2272727272727 
+},
+{
+ "X": 81,
+"gov_parameter": "finc",
+"year": "2012",
+"gov_score":              7,
+"conservancy": "Naibunga",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 82,
+"gov_parameter": "finc",
+"year": "2012",
+"gov_score":              5,
+"conservancy": "Namunyak",
+"percentage": 0.2272727272727 
+},
+{
+ "X": 83,
+"gov_parameter": "finc",
+"year": "2012",
+"gov_score":              0,
+"conservancy": "Ngare_Ndare",
+"percentage": 0.1818181818182 
+},
+{
+ "X": 84,
+"gov_parameter": "finc",
+"year": "2012",
+"gov_score":              4,
+"conservancy": "Ruko",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 85,
+"gov_parameter": "finc",
+"year": "2012",
+"gov_score":              6,
+"conservancy": "Sera",
+"percentage": 0.1818181818182 
+},
+{
+ "X": 86,
+"gov_parameter": "finc",
+"year": "2012",
+"gov_score":              3,
+"conservancy": "West_Gate",
+"percentage": 0.2272727272727 
+},
+{
+ "X": 87,
+"gov_parameter": "finc",
+"year": "2012",
+"gov_score":              7,
+"conservancy": "Leparua",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 88,
+"gov_parameter": "finc",
+"year": "2012",
+"gov_score":              5,
+"conservancy": "Nakuprat_Gotu",
+"percentage": 0.2272727272727 
+},
+{
+ "X": 89,
+"gov_parameter": "finc",
+"year": "2012",
+"gov_score":              0,
+"conservancy": "Ndera",
+"percentage": 0.1818181818182 
+},
+{
+ "X": 90,
+"gov_parameter": "finc",
+"year": "2012",
+"gov_score":              4,
+"conservancy": "Nasuulu",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 91,
+"gov_parameter": "finc",
+"year": "2012",
+"gov_score":              6,
+"conservancy": "Shurr",
+"percentage": 0.1818181818182 
+},
+{
+ "X": 92,
+"gov_parameter": "finc",
+"year": "2012",
+"gov_score":              3,
+"conservancy": "Songa",
+"percentage": 0.2272727272727 
+},
+{
+ "X": 93,
+"gov_parameter": "finc",
+"year": "2012",
+"gov_score":              7,
+"conservancy": "Jaldessa",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 94,
+"gov_parameter": "finc",
+"year": "2013",
+"gov_score":              3,
+"conservancy": "Biliqo_Bulesa",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 95,
+"gov_parameter": "finc",
+"year": "2013",
+"gov_score":              6,
+"conservancy": "Il_Ngwesi",
+"percentage": 0.1818181818182 
+},
+{
+ "X": 96,
+"gov_parameter": "finc",
+"year": "2013",
+"gov_score":              2,
+"conservancy": "Ishaqbini",
+"percentage": 0.1818181818182 
+},
+{
+ "X": 97,
+"gov_parameter": "finc",
+"year": "2013",
+"gov_score":              5,
+"conservancy": "Kalama",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 98,
+"gov_parameter": "finc",
+"year": "2013",
+"gov_score":              7,
+"conservancy": "Lekurruki",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 99,
+"gov_parameter": "finc",
+"year": "2013",
+"gov_score":              4,
+"conservancy": "Ltungai",
+"percentage": 0.2727272727273 
+},
+{
+ "X": 100,
+"gov_parameter": "finc",
+"year": "2013",
+"gov_score":              0,
+"conservancy": "Meibae",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 101,
+"gov_parameter": "finc",
+"year": "2013",
+"gov_score":              3,
+"conservancy": "Melako",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 102,
+"gov_parameter": "finc",
+"year": "2013",
+"gov_score":              6,
+"conservancy": "Mpus_Kutuk",
+"percentage": 0.1818181818182 
+},
+{
+ "X": 103,
+"gov_parameter": "finc",
+"year": "2013",
+"gov_score":              2,
+"conservancy": "Naibunga",
+"percentage": 0.1818181818182 
+},
+{
+ "X": 104,
+"gov_parameter": "finc",
+"year": "2013",
+"gov_score":              5,
+"conservancy": "Namunyak",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 105,
+"gov_parameter": "finc",
+"year": "2013",
+"gov_score":              7,
+"conservancy": "Ngare_Ndare",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 106,
+"gov_parameter": "finc",
+"year": "2013",
+"gov_score":              4,
+"conservancy": "Ruko",
+"percentage": 0.2727272727273 
+},
+{
+ "X": 107,
+"gov_parameter": "finc",
+"year": "2013",
+"gov_score":              0,
+"conservancy": "Sera",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 108,
+"gov_parameter": "finc",
+"year": "2013",
+"gov_score":              3,
+"conservancy": "West_Gate",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 109,
+"gov_parameter": "finc",
+"year": "2013",
+"gov_score":              6,
+"conservancy": "Leparua",
+"percentage": 0.1818181818182 
+},
+{
+ "X": 110,
+"gov_parameter": "finc",
+"year": "2013",
+"gov_score":              2,
+"conservancy": "Nakuprat_Gotu",
+"percentage": 0.1818181818182 
+},
+{
+ "X": 111,
+"gov_parameter": "finc",
+"year": "2013",
+"gov_score":              5,
+"conservancy": "Ndera",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 112,
+"gov_parameter": "finc",
+"year": "2013",
+"gov_score":              7,
+"conservancy": "Nasuulu",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 113,
+"gov_parameter": "finc",
+"year": "2013",
+"gov_score":              4,
+"conservancy": "Shurr",
+"percentage": 0.2727272727273 
+},
+{
+ "X": 114,
+"gov_parameter": "finc",
+"year": "2013",
+"gov_score":              0,
+"conservancy": "Songa",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 115,
+"gov_parameter": "finc",
+"year": "2013",
+"gov_score":              3,
+"conservancy": "Jaldessa",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 116,
+"gov_parameter": "finc",
+"year": "2014",
+"gov_score":             11,
+"conservancy": "Biliqo_Bulesa",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 117,
+"gov_parameter": "finc",
+"year": "2014",
+"gov_score":             22,
+"conservancy": "Il_Ngwesi",
+"percentage": 0.2222222222222 
+},
+{
+ "X": 118,
+"gov_parameter": "finc",
+"year": "2014",
+"gov_score":             16,
+"conservancy": "Ishaqbini",
+"percentage": 0.1111111111111 
+},
+{
+ "X": 119,
+"gov_parameter": "finc",
+"year": "2014",
+"gov_score":             13,
+"conservancy": "Kalama",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 120,
+"gov_parameter": "finc",
+"year": "2014",
+"gov_score":             17,
+"conservancy": "Lekurruki",
+"percentage": 0.1481481481481 
+},
+{
+ "X": 121,
+"gov_parameter": "finc",
+"year": "2014",
+"gov_score":             15,
+"conservancy": "Ltungai",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 122,
+"gov_parameter": "finc",
+"year": "2014",
+"gov_score":             19,
+"conservancy": "Meibae",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 123,
+"gov_parameter": "finc",
+"year": "2014",
+"gov_score":             20,
+"conservancy": "Melako",
+"percentage": 0.1111111111111 
+},
+{
+ "X": 124,
+"gov_parameter": "finc",
+"year": "2014",
+"gov_score":             10,
+"conservancy": "Mpus_Kutuk",
+"percentage": 0.1111111111111 
+},
+{
+ "X": 125,
+"gov_parameter": "finc",
+"year": "2014",
+"gov_score":             21,
+"conservancy": "Naibunga",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 126,
+"gov_parameter": "finc",
+"year": "2014",
+"gov_score":              9,
+"conservancy": "Namunyak",
+"percentage": 0.1111111111111 
+},
+{
+ "X": 127,
+"gov_parameter": "finc",
+"year": "2014",
+"gov_score":             11,
+"conservancy": "Ngare_Ndare",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 128,
+"gov_parameter": "finc",
+"year": "2014",
+"gov_score":             22,
+"conservancy": "Ruko",
+"percentage": 0.2222222222222 
+},
+{
+ "X": 129,
+"gov_parameter": "finc",
+"year": "2014",
+"gov_score":             16,
+"conservancy": "Sera",
+"percentage": 0.1111111111111 
+},
+{
+ "X": 130,
+"gov_parameter": "finc",
+"year": "2014",
+"gov_score":             13,
+"conservancy": "West_Gate",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 131,
+"gov_parameter": "finc",
+"year": "2014",
+"gov_score":             17,
+"conservancy": "Leparua",
+"percentage": 0.1481481481481 
+},
+{
+ "X": 132,
+"gov_parameter": "finc",
+"year": "2014",
+"gov_score":             15,
+"conservancy": "Nakuprat_Gotu",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 133,
+"gov_parameter": "finc",
+"year": "2014",
+"gov_score":             19,
+"conservancy": "Ndera",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 134,
+"gov_parameter": "finc",
+"year": "2014",
+"gov_score":             20,
+"conservancy": "Nasuulu",
+"percentage": 0.1111111111111 
+},
+{
+ "X": 135,
+"gov_parameter": "finc",
+"year": "2014",
+"gov_score":             10,
+"conservancy": "Shurr",
+"percentage": 0.1111111111111 
+},
+{
+ "X": 136,
+"gov_parameter": "finc",
+"year": "2014",
+"gov_score":             21,
+"conservancy": "Songa",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 137,
+"gov_parameter": "finc",
+"year": "2014",
+"gov_score":              9,
+"conservancy": "Jaldessa",
+"percentage": 0.1111111111111 
+},
+{
+ "X": 138,
+"gov_parameter": "finc",
+"year": "2014",
+"gov_score":             11,
+"conservancy": "Pate",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 139,
+"gov_parameter": "finc",
+"year": "2014",
+"gov_score":             22,
+"conservancy": "Kiunga",
+"percentage": 0.2222222222222 
+},
+{
+ "X": 140,
+"gov_parameter": "finc",
+"year": "2014",
+"gov_score":             16,
+"conservancy": "Tana_River_Delta",
+"percentage": 0.1111111111111 
+},
+{
+ "X": 141,
+"gov_parameter": "finc",
+"year": "2014",
+"gov_score":             13,
+"conservancy": "Hanshack_Nyogoro",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 142,
+"gov_parameter": "finc",
+"year": "2014",
+"gov_score":             17,
+"conservancy": "Awer",
+"percentage": 0.1481481481481 
+},
+{
+ "X": 143,
+"gov_parameter": "ccy_support",
+"year": "2012",
+"gov_score":              8,
+"conservancy": "Biliqo_Bulesa",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 144,
+"gov_parameter": "ccy_support",
+"year": "2012",
+"gov_score":              6,
+"conservancy": "Il_Ngwesi",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 145,
+"gov_parameter": "ccy_support",
+"year": "2012",
+"gov_score":             11,
+"conservancy": "Ishaqbini",
+"percentage": 0.2727272727273 
+},
+{
+ "X": 146,
+"gov_parameter": "ccy_support",
+"year": "2012",
+"gov_score":              9,
+"conservancy": "Kalama",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 147,
+"gov_parameter": "ccy_support",
+"year": "2012",
+"gov_score":              7,
+"conservancy": "Lekurruki",
+"percentage": 0.2727272727273 
+},
+{
+ "X": 148,
+"gov_parameter": "ccy_support",
+"year": "2012",
+"gov_score":              5,
+"conservancy": "Ltungai",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 149,
+"gov_parameter": "ccy_support",
+"year": "2012",
+"gov_score":              4,
+"conservancy": "Meibae",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 150,
+"gov_parameter": "ccy_support",
+"year": "2012",
+"gov_score":              8,
+"conservancy": "Melako",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 151,
+"gov_parameter": "ccy_support",
+"year": "2012",
+"gov_score":              6,
+"conservancy": "Mpus_Kutuk",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 152,
+"gov_parameter": "ccy_support",
+"year": "2012",
+"gov_score":             11,
+"conservancy": "Naibunga",
+"percentage": 0.2727272727273 
+},
+{
+ "X": 153,
+"gov_parameter": "ccy_support",
+"year": "2012",
+"gov_score":              9,
+"conservancy": "Namunyak",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 154,
+"gov_parameter": "ccy_support",
+"year": "2012",
+"gov_score":              7,
+"conservancy": "Ngare_Ndare",
+"percentage": 0.2727272727273 
+},
+{
+ "X": 155,
+"gov_parameter": "ccy_support",
+"year": "2012",
+"gov_score":              5,
+"conservancy": "Ruko",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 156,
+"gov_parameter": "ccy_support",
+"year": "2012",
+"gov_score":              4,
+"conservancy": "Sera",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 157,
+"gov_parameter": "ccy_support",
+"year": "2012",
+"gov_score":              8,
+"conservancy": "West_Gate",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 158,
+"gov_parameter": "ccy_support",
+"year": "2012",
+"gov_score":              6,
+"conservancy": "Leparua",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 159,
+"gov_parameter": "ccy_support",
+"year": "2012",
+"gov_score":             11,
+"conservancy": "Nakuprat_Gotu",
+"percentage": 0.2727272727273 
+},
+{
+ "X": 160,
+"gov_parameter": "ccy_support",
+"year": "2012",
+"gov_score":              9,
+"conservancy": "Ndera",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 161,
+"gov_parameter": "ccy_support",
+"year": "2012",
+"gov_score":              7,
+"conservancy": "Nasuulu",
+"percentage": 0.2727272727273 
+},
+{
+ "X": 162,
+"gov_parameter": "ccy_support",
+"year": "2012",
+"gov_score":              5,
+"conservancy": "Shurr",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 163,
+"gov_parameter": "ccy_support",
+"year": "2012",
+"gov_score":              4,
+"conservancy": "Songa",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 164,
+"gov_parameter": "ccy_support",
+"year": "2012",
+"gov_score":              8,
+"conservancy": "Jaldessa",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 165,
+"gov_parameter": "ccy_support",
+"year": "2013",
+"gov_score":              9,
+"conservancy": "Biliqo_Bulesa",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 166,
+"gov_parameter": "ccy_support",
+"year": "2013",
+"gov_score":              7,
+"conservancy": "Il_Ngwesi",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 167,
+"gov_parameter": "ccy_support",
+"year": "2013",
+"gov_score":             11,
+"conservancy": "Ishaqbini",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 168,
+"gov_parameter": "ccy_support",
+"year": "2013",
+"gov_score":              5,
+"conservancy": "Kalama",
+"percentage": 0.2727272727273 
+},
+{
+ "X": 169,
+"gov_parameter": "ccy_support",
+"year": "2013",
+"gov_score":              8,
+"conservancy": "Lekurruki",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 170,
+"gov_parameter": "ccy_support",
+"year": "2013",
+"gov_score":              6,
+"conservancy": "Ltungai",
+"percentage": 0.1818181818182 
+},
+{
+ "X": 171,
+"gov_parameter": "ccy_support",
+"year": "2013",
+"gov_score":             10,
+"conservancy": "Meibae",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 172,
+"gov_parameter": "ccy_support",
+"year": "2013",
+"gov_score":              4,
+"conservancy": "Melako",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 173,
+"gov_parameter": "ccy_support",
+"year": "2013",
+"gov_score":              9,
+"conservancy": "Mpus_Kutuk",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 174,
+"gov_parameter": "ccy_support",
+"year": "2013",
+"gov_score":              7,
+"conservancy": "Naibunga",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 175,
+"gov_parameter": "ccy_support",
+"year": "2013",
+"gov_score":             11,
+"conservancy": "Namunyak",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 176,
+"gov_parameter": "ccy_support",
+"year": "2013",
+"gov_score":              5,
+"conservancy": "Ngare_Ndare",
+"percentage": 0.2727272727273 
+},
+{
+ "X": 177,
+"gov_parameter": "ccy_support",
+"year": "2013",
+"gov_score":              8,
+"conservancy": "Ruko",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 178,
+"gov_parameter": "ccy_support",
+"year": "2013",
+"gov_score":              6,
+"conservancy": "Sera",
+"percentage": 0.1818181818182 
+},
+{
+ "X": 179,
+"gov_parameter": "ccy_support",
+"year": "2013",
+"gov_score":             10,
+"conservancy": "West_Gate",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 180,
+"gov_parameter": "ccy_support",
+"year": "2013",
+"gov_score":              4,
+"conservancy": "Leparua",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 181,
+"gov_parameter": "ccy_support",
+"year": "2013",
+"gov_score":              9,
+"conservancy": "Nakuprat_Gotu",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 182,
+"gov_parameter": "ccy_support",
+"year": "2013",
+"gov_score":              7,
+"conservancy": "Ndera",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 183,
+"gov_parameter": "ccy_support",
+"year": "2013",
+"gov_score":             11,
+"conservancy": "Nasuulu",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 184,
+"gov_parameter": "ccy_support",
+"year": "2013",
+"gov_score":              5,
+"conservancy": "Shurr",
+"percentage": 0.2727272727273 
+},
+{
+ "X": 185,
+"gov_parameter": "ccy_support",
+"year": "2013",
+"gov_score":              8,
+"conservancy": "Songa",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 186,
+"gov_parameter": "ccy_support",
+"year": "2013",
+"gov_score":              6,
+"conservancy": "Jaldessa",
+"percentage": 0.1818181818182 
+},
+{
+ "X": 187,
+"gov_parameter": "ccy_support",
+"year": "2014",
+"gov_score":             25,
+"conservancy": "Biliqo_Bulesa",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 188,
+"gov_parameter": "ccy_support",
+"year": "2014",
+"gov_score":             33,
+"conservancy": "Il_Ngwesi",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 189,
+"gov_parameter": "ccy_support",
+"year": "2014",
+"gov_score":             37,
+"conservancy": "Ishaqbini",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 190,
+"gov_parameter": "ccy_support",
+"year": "2014",
+"gov_score":             13,
+"conservancy": "Kalama",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 191,
+"gov_parameter": "ccy_support",
+"year": "2014",
+"gov_score":             28,
+"conservancy": "Lekurruki",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 192,
+"gov_parameter": "ccy_support",
+"year": "2014",
+"gov_score":             35,
+"conservancy": "Ltungai",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 193,
+"gov_parameter": "ccy_support",
+"year": "2014",
+"gov_score":             26,
+"conservancy": "Meibae",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 194,
+"gov_parameter": "ccy_support",
+"year": "2014",
+"gov_score":             15,
+"conservancy": "Melako",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 195,
+"gov_parameter": "ccy_support",
+"year": "2014",
+"gov_score":             29,
+"conservancy": "Mpus_Kutuk",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 196,
+"gov_parameter": "ccy_support",
+"year": "2014",
+"gov_score":             32,
+"conservancy": "Naibunga",
+"percentage": 0.1481481481481 
+},
+{
+ "X": 197,
+"gov_parameter": "ccy_support",
+"year": "2014",
+"gov_score":             34,
+"conservancy": "Namunyak",
+"percentage": 0.1111111111111 
+},
+{
+ "X": 198,
+"gov_parameter": "ccy_support",
+"year": "2014",
+"gov_score":             38,
+"conservancy": "Ngare_Ndare",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 199,
+"gov_parameter": "ccy_support",
+"year": "2014",
+"gov_score":             27,
+"conservancy": "Ruko",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 200,
+"gov_parameter": "ccy_support",
+"year": "2014",
+"gov_score":             31,
+"conservancy": "Sera",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 201,
+"gov_parameter": "ccy_support",
+"year": "2014",
+"gov_score":             30,
+"conservancy": "West_Gate",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 202,
+"gov_parameter": "ccy_support",
+"year": "2014",
+"gov_score":             21,
+"conservancy": "Leparua",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 203,
+"gov_parameter": "ccy_support",
+"year": "2014",
+"gov_score":             20,
+"conservancy": "Nakuprat_Gotu",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 204,
+"gov_parameter": "ccy_support",
+"year": "2014",
+"gov_score":             23,
+"conservancy": "Ndera",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 205,
+"gov_parameter": "ccy_support",
+"year": "2014",
+"gov_score":             25,
+"conservancy": "Nasuulu",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 206,
+"gov_parameter": "ccy_support",
+"year": "2014",
+"gov_score":             33,
+"conservancy": "Shurr",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 207,
+"gov_parameter": "ccy_support",
+"year": "2014",
+"gov_score":             37,
+"conservancy": "Songa",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 208,
+"gov_parameter": "ccy_support",
+"year": "2014",
+"gov_score":             13,
+"conservancy": "Jaldessa",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 209,
+"gov_parameter": "ccy_support",
+"year": "2014",
+"gov_score":             28,
+"conservancy": "Pate",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 210,
+"gov_parameter": "ccy_support",
+"year": "2014",
+"gov_score":             35,
+"conservancy": "Kiunga",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 211,
+"gov_parameter": "ccy_support",
+"year": "2014",
+"gov_score":             26,
+"conservancy": "Tana_River_Delta",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 212,
+"gov_parameter": "ccy_support",
+"year": "2014",
+"gov_score":             15,
+"conservancy": "Hanshack_Nyogoro",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 213,
+"gov_parameter": "ccy_support",
+"year": "2014",
+"gov_score":             29,
+"conservancy": "Awer",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 214,
+"gov_parameter": "growth",
+"year": "2012",
+"gov_score":              4,
+"conservancy": "Biliqo_Bulesa",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 215,
+"gov_parameter": "growth",
+"year": "2012",
+"gov_score":              7,
+"conservancy": "Il_Ngwesi",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 216,
+"gov_parameter": "growth",
+"year": "2012",
+"gov_score":              3,
+"conservancy": "Ishaqbini",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 217,
+"gov_parameter": "growth",
+"year": "2012",
+"gov_score":              5,
+"conservancy": "Kalama",
+"percentage": 0.2272727272727 
+},
+{
+ "X": 218,
+"gov_parameter": "growth",
+"year": "2012",
+"gov_score":             10,
+"conservancy": "Lekurruki",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 219,
+"gov_parameter": "growth",
+"year": "2012",
+"gov_score":              6,
+"conservancy": "Ltungai",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 220,
+"gov_parameter": "growth",
+"year": "2012",
+"gov_score":              9,
+"conservancy": "Meibae",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 221,
+"gov_parameter": "growth",
+"year": "2012",
+"gov_score":              8,
+"conservancy": "Melako",
+"percentage": 0.1818181818182 
+},
+{
+ "X": 222,
+"gov_parameter": "growth",
+"year": "2012",
+"gov_score":              2,
+"conservancy": "Mpus_Kutuk",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 223,
+"gov_parameter": "growth",
+"year": "2012",
+"gov_score":              4,
+"conservancy": "Naibunga",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 224,
+"gov_parameter": "growth",
+"year": "2012",
+"gov_score":              7,
+"conservancy": "Namunyak",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 225,
+"gov_parameter": "growth",
+"year": "2012",
+"gov_score":              3,
+"conservancy": "Ngare_Ndare",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 226,
+"gov_parameter": "growth",
+"year": "2012",
+"gov_score":              5,
+"conservancy": "Ruko",
+"percentage": 0.2272727272727 
+},
+{
+ "X": 227,
+"gov_parameter": "growth",
+"year": "2012",
+"gov_score":             10,
+"conservancy": "Sera",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 228,
+"gov_parameter": "growth",
+"year": "2012",
+"gov_score":              6,
+"conservancy": "West_Gate",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 229,
+"gov_parameter": "growth",
+"year": "2012",
+"gov_score":              9,
+"conservancy": "Leparua",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 230,
+"gov_parameter": "growth",
+"year": "2012",
+"gov_score":              8,
+"conservancy": "Nakuprat_Gotu",
+"percentage": 0.1818181818182 
+},
+{
+ "X": 231,
+"gov_parameter": "growth",
+"year": "2012",
+"gov_score":              2,
+"conservancy": "Ndera",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 232,
+"gov_parameter": "growth",
+"year": "2012",
+"gov_score":              4,
+"conservancy": "Nasuulu",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 233,
+"gov_parameter": "growth",
+"year": "2012",
+"gov_score":              7,
+"conservancy": "Shurr",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 234,
+"gov_parameter": "growth",
+"year": "2012",
+"gov_score":              3,
+"conservancy": "Songa",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 235,
+"gov_parameter": "growth",
+"year": "2012",
+"gov_score":              5,
+"conservancy": "Jaldessa",
+"percentage": 0.2272727272727 
+},
+{
+ "X": 236,
+"gov_parameter": "growth",
+"year": "2013",
+"gov_score":              7,
+"conservancy": "Biliqo_Bulesa",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 237,
+"gov_parameter": "growth",
+"year": "2013",
+"gov_score":              9,
+"conservancy": "Il_Ngwesi",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 238,
+"gov_parameter": "growth",
+"year": "2013",
+"gov_score":              6,
+"conservancy": "Ishaqbini",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 239,
+"gov_parameter": "growth",
+"year": "2013",
+"gov_score":             10,
+"conservancy": "Kalama",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 240,
+"gov_parameter": "growth",
+"year": "2013",
+"gov_score":              5,
+"conservancy": "Lekurruki",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 241,
+"gov_parameter": "growth",
+"year": "2013",
+"gov_score":              8,
+"conservancy": "Ltungai",
+"percentage": 0.2727272727273 
+},
+{
+ "X": 242,
+"gov_parameter": "growth",
+"year": "2013",
+"gov_score":              4,
+"conservancy": "Meibae",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 243,
+"gov_parameter": "growth",
+"year": "2013",
+"gov_score":              3,
+"conservancy": "Melako",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 244,
+"gov_parameter": "growth",
+"year": "2013",
+"gov_score":              7,
+"conservancy": "Mpus_Kutuk",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 245,
+"gov_parameter": "growth",
+"year": "2013",
+"gov_score":              9,
+"conservancy": "Naibunga",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 246,
+"gov_parameter": "growth",
+"year": "2013",
+"gov_score":              6,
+"conservancy": "Namunyak",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 247,
+"gov_parameter": "growth",
+"year": "2013",
+"gov_score":             10,
+"conservancy": "Ngare_Ndare",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 248,
+"gov_parameter": "growth",
+"year": "2013",
+"gov_score":              5,
+"conservancy": "Ruko",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 249,
+"gov_parameter": "growth",
+"year": "2013",
+"gov_score":              8,
+"conservancy": "Sera",
+"percentage": 0.2727272727273 
+},
+{
+ "X": 250,
+"gov_parameter": "growth",
+"year": "2013",
+"gov_score":              4,
+"conservancy": "West_Gate",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 251,
+"gov_parameter": "growth",
+"year": "2013",
+"gov_score":              3,
+"conservancy": "Leparua",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 252,
+"gov_parameter": "growth",
+"year": "2013",
+"gov_score":              7,
+"conservancy": "Nakuprat_Gotu",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 253,
+"gov_parameter": "growth",
+"year": "2013",
+"gov_score":              9,
+"conservancy": "Ndera",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 254,
+"gov_parameter": "growth",
+"year": "2013",
+"gov_score":              6,
+"conservancy": "Nasuulu",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 255,
+"gov_parameter": "growth",
+"year": "2013",
+"gov_score":             10,
+"conservancy": "Shurr",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 256,
+"gov_parameter": "growth",
+"year": "2013",
+"gov_score":              5,
+"conservancy": "Songa",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 257,
+"gov_parameter": "growth",
+"year": "2013",
+"gov_score":              8,
+"conservancy": "Jaldessa",
+"percentage": 0.2727272727273 
+},
+{
+ "X": 258,
+"gov_parameter": "growth",
+"year": "2014",
+"gov_score":             17,
+"conservancy": "Biliqo_Bulesa",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 259,
+"gov_parameter": "growth",
+"year": "2014",
+"gov_score":             24,
+"conservancy": "Il_Ngwesi",
+"percentage": 0.1111111111111 
+},
+{
+ "X": 260,
+"gov_parameter": "growth",
+"year": "2014",
+"gov_score":             32,
+"conservancy": "Ishaqbini",
+"percentage": 0.1111111111111 
+},
+{
+ "X": 261,
+"gov_parameter": "growth",
+"year": "2014",
+"gov_score":             14,
+"conservancy": "Kalama",
+"percentage": 0.1111111111111 
+},
+{
+ "X": 262,
+"gov_parameter": "growth",
+"year": "2014",
+"gov_score":             23,
+"conservancy": "Lekurruki",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 263,
+"gov_parameter": "growth",
+"year": "2014",
+"gov_score":             22,
+"conservancy": "Ltungai",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 264,
+"gov_parameter": "growth",
+"year": "2014",
+"gov_score":             19,
+"conservancy": "Meibae",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 265,
+"gov_parameter": "growth",
+"year": "2014",
+"gov_score":             12,
+"conservancy": "Melako",
+"percentage": 0.1111111111111 
+},
+{
+ "X": 266,
+"gov_parameter": "growth",
+"year": "2014",
+"gov_score":             20,
+"conservancy": "Mpus_Kutuk",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 267,
+"gov_parameter": "growth",
+"year": "2014",
+"gov_score":             28,
+"conservancy": "Naibunga",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 268,
+"gov_parameter": "growth",
+"year": "2014",
+"gov_score":             21,
+"conservancy": "Namunyak",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 269,
+"gov_parameter": "growth",
+"year": "2014",
+"gov_score":             26,
+"conservancy": "Ngare_Ndare",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 270,
+"gov_parameter": "growth",
+"year": "2014",
+"gov_score":             30,
+"conservancy": "Ruko",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 271,
+"gov_parameter": "growth",
+"year": "2014",
+"gov_score":             15,
+"conservancy": "Sera",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 272,
+"gov_parameter": "growth",
+"year": "2014",
+"gov_score":             16,
+"conservancy": "West_Gate",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 273,
+"gov_parameter": "growth",
+"year": "2014",
+"gov_score":             11,
+"conservancy": "Leparua",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 274,
+"gov_parameter": "growth",
+"year": "2014",
+"gov_score":             17,
+"conservancy": "Nakuprat_Gotu",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 275,
+"gov_parameter": "growth",
+"year": "2014",
+"gov_score":             24,
+"conservancy": "Ndera",
+"percentage": 0.1111111111111 
+},
+{
+ "X": 276,
+"gov_parameter": "growth",
+"year": "2014",
+"gov_score":             32,
+"conservancy": "Nasuulu",
+"percentage": 0.1111111111111 
+},
+{
+ "X": 277,
+"gov_parameter": "growth",
+"year": "2014",
+"gov_score":             14,
+"conservancy": "Shurr",
+"percentage": 0.1111111111111 
+},
+{
+ "X": 278,
+"gov_parameter": "growth",
+"year": "2014",
+"gov_score":             23,
+"conservancy": "Songa",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 279,
+"gov_parameter": "growth",
+"year": "2014",
+"gov_score":             22,
+"conservancy": "Jaldessa",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 280,
+"gov_parameter": "growth",
+"year": "2014",
+"gov_score":             19,
+"conservancy": "Pate",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 281,
+"gov_parameter": "growth",
+"year": "2014",
+"gov_score":             12,
+"conservancy": "Kiunga",
+"percentage": 0.1111111111111 
+},
+{
+ "X": 282,
+"gov_parameter": "growth",
+"year": "2014",
+"gov_score":             20,
+"conservancy": "Tana_River_Delta",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 283,
+"gov_parameter": "growth",
+"year": "2014",
+"gov_score":             28,
+"conservancy": "Hanshack_Nyogoro",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 284,
+"gov_parameter": "growth",
+"year": "2014",
+"gov_score":             21,
+"conservancy": "Awer",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 285,
+"gov_parameter": "admin",
+"year": "2012",
+"gov_score":              5,
+"conservancy": "Biliqo_Bulesa",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 286,
+"gov_parameter": "admin",
+"year": "2012",
+"gov_score":              8,
+"conservancy": "Il_Ngwesi",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 287,
+"gov_parameter": "admin",
+"year": "2012",
+"gov_score":              4,
+"conservancy": "Ishaqbini",
+"percentage": 0.2272727272727 
+},
+{
+ "X": 288,
+"gov_parameter": "admin",
+"year": "2012",
+"gov_score":             10,
+"conservancy": "Kalama",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 289,
+"gov_parameter": "admin",
+"year": "2012",
+"gov_score":              7,
+"conservancy": "Lekurruki",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 290,
+"gov_parameter": "admin",
+"year": "2012",
+"gov_score":              6,
+"conservancy": "Ltungai",
+"percentage": 0.2727272727273 
+},
+{
+ "X": 291,
+"gov_parameter": "admin",
+"year": "2012",
+"gov_score":              1,
+"conservancy": "Meibae",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 292,
+"gov_parameter": "admin",
+"year": "2012",
+"gov_score":              5,
+"conservancy": "Melako",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 293,
+"gov_parameter": "admin",
+"year": "2012",
+"gov_score":              8,
+"conservancy": "Mpus_Kutuk",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 294,
+"gov_parameter": "admin",
+"year": "2012",
+"gov_score":              4,
+"conservancy": "Naibunga",
+"percentage": 0.2272727272727 
+},
+{
+ "X": 295,
+"gov_parameter": "admin",
+"year": "2012",
+"gov_score":             10,
+"conservancy": "Namunyak",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 296,
+"gov_parameter": "admin",
+"year": "2012",
+"gov_score":              7,
+"conservancy": "Ngare_Ndare",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 297,
+"gov_parameter": "admin",
+"year": "2012",
+"gov_score":              6,
+"conservancy": "Ruko",
+"percentage": 0.2727272727273 
+},
+{
+ "X": 298,
+"gov_parameter": "admin",
+"year": "2012",
+"gov_score":              1,
+"conservancy": "Sera",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 299,
+"gov_parameter": "admin",
+"year": "2012",
+"gov_score":              5,
+"conservancy": "West_Gate",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 300,
+"gov_parameter": "admin",
+"year": "2012",
+"gov_score":              8,
+"conservancy": "Leparua",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 301,
+"gov_parameter": "admin",
+"year": "2012",
+"gov_score":              4,
+"conservancy": "Nakuprat_Gotu",
+"percentage": 0.2272727272727 
+},
+{
+ "X": 302,
+"gov_parameter": "admin",
+"year": "2012",
+"gov_score":             10,
+"conservancy": "Ndera",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 303,
+"gov_parameter": "admin",
+"year": "2012",
+"gov_score":              7,
+"conservancy": "Nasuulu",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 304,
+"gov_parameter": "admin",
+"year": "2012",
+"gov_score":              6,
+"conservancy": "Shurr",
+"percentage": 0.2727272727273 
+},
+{
+ "X": 305,
+"gov_parameter": "admin",
+"year": "2012",
+"gov_score":              1,
+"conservancy": "Songa",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 306,
+"gov_parameter": "admin",
+"year": "2012",
+"gov_score":              5,
+"conservancy": "Jaldessa",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 307,
+"gov_parameter": "admin",
+"year": "2013",
+"gov_score":              6,
+"conservancy": "Biliqo_Bulesa",
+"percentage": 0.1818181818182 
+},
+{
+ "X": 308,
+"gov_parameter": "admin",
+"year": "2013",
+"gov_score":              8,
+"conservancy": "Il_Ngwesi",
+"percentage": 0.1818181818182 
+},
+{
+ "X": 309,
+"gov_parameter": "admin",
+"year": "2013",
+"gov_score":              7,
+"conservancy": "Ishaqbini",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 310,
+"gov_parameter": "admin",
+"year": "2013",
+"gov_score":             11,
+"conservancy": "Kalama",
+"percentage": 0.3181818181818 
+},
+{
+ "X": 311,
+"gov_parameter": "admin",
+"year": "2013",
+"gov_score":              9,
+"conservancy": "Lekurruki",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 312,
+"gov_parameter": "admin",
+"year": "2013",
+"gov_score":             10,
+"conservancy": "Ltungai",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 313,
+"gov_parameter": "admin",
+"year": "2013",
+"gov_score":              4,
+"conservancy": "Meibae",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 314,
+"gov_parameter": "admin",
+"year": "2013",
+"gov_score":              6,
+"conservancy": "Melako",
+"percentage": 0.1818181818182 
+},
+{
+ "X": 315,
+"gov_parameter": "admin",
+"year": "2013",
+"gov_score":              8,
+"conservancy": "Mpus_Kutuk",
+"percentage": 0.1818181818182 
+},
+{
+ "X": 316,
+"gov_parameter": "admin",
+"year": "2013",
+"gov_score":              7,
+"conservancy": "Naibunga",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 317,
+"gov_parameter": "admin",
+"year": "2013",
+"gov_score":             11,
+"conservancy": "Namunyak",
+"percentage": 0.3181818181818 
+},
+{
+ "X": 318,
+"gov_parameter": "admin",
+"year": "2013",
+"gov_score":              9,
+"conservancy": "Ngare_Ndare",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 319,
+"gov_parameter": "admin",
+"year": "2013",
+"gov_score":             10,
+"conservancy": "Ruko",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 320,
+"gov_parameter": "admin",
+"year": "2013",
+"gov_score":              4,
+"conservancy": "Sera",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 321,
+"gov_parameter": "admin",
+"year": "2013",
+"gov_score":              6,
+"conservancy": "West_Gate",
+"percentage": 0.1818181818182 
+},
+{
+ "X": 322,
+"gov_parameter": "admin",
+"year": "2013",
+"gov_score":              8,
+"conservancy": "Leparua",
+"percentage": 0.1818181818182 
+},
+{
+ "X": 323,
+"gov_parameter": "admin",
+"year": "2013",
+"gov_score":              7,
+"conservancy": "Nakuprat_Gotu",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 324,
+"gov_parameter": "admin",
+"year": "2013",
+"gov_score":             11,
+"conservancy": "Ndera",
+"percentage": 0.3181818181818 
+},
+{
+ "X": 325,
+"gov_parameter": "admin",
+"year": "2013",
+"gov_score":              9,
+"conservancy": "Nasuulu",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 326,
+"gov_parameter": "admin",
+"year": "2013",
+"gov_score":             10,
+"conservancy": "Shurr",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 327,
+"gov_parameter": "admin",
+"year": "2013",
+"gov_score":              4,
+"conservancy": "Songa",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 328,
+"gov_parameter": "admin",
+"year": "2013",
+"gov_score":              6,
+"conservancy": "Jaldessa",
+"percentage": 0.1818181818182 
+},
+{
+ "X": 329,
+"gov_parameter": "admin",
+"year": "2014",
+"gov_score":             25,
+"conservancy": "Biliqo_Bulesa",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 330,
+"gov_parameter": "admin",
+"year": "2014",
+"gov_score":             31,
+"conservancy": "Il_Ngwesi",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 331,
+"gov_parameter": "admin",
+"year": "2014",
+"gov_score":             24,
+"conservancy": "Ishaqbini",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 332,
+"gov_parameter": "admin",
+"year": "2014",
+"gov_score":             29,
+"conservancy": "Kalama",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 333,
+"gov_parameter": "admin",
+"year": "2014",
+"gov_score":             19,
+"conservancy": "Lekurruki",
+"percentage": 0.1481481481481 
+},
+{
+ "X": 334,
+"gov_parameter": "admin",
+"year": "2014",
+"gov_score":             28,
+"conservancy": "Ltungai",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 335,
+"gov_parameter": "admin",
+"year": "2014",
+"gov_score":             14,
+"conservancy": "Meibae",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 336,
+"gov_parameter": "admin",
+"year": "2014",
+"gov_score":             27,
+"conservancy": "Melako",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 337,
+"gov_parameter": "admin",
+"year": "2014",
+"gov_score":             17,
+"conservancy": "Mpus_Kutuk",
+"percentage": 0.1481481481481 
+},
+{
+ "X": 338,
+"gov_parameter": "admin",
+"year": "2014",
+"gov_score":             21,
+"conservancy": "Naibunga",
+"percentage": 0.1111111111111 
+},
+{
+ "X": 339,
+"gov_parameter": "admin",
+"year": "2014",
+"gov_score":             20,
+"conservancy": "Namunyak",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 340,
+"gov_parameter": "admin",
+"year": "2014",
+"gov_score":             18,
+"conservancy": "Ngare_Ndare",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 341,
+"gov_parameter": "admin",
+"year": "2014",
+"gov_score":              8,
+"conservancy": "Ruko",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 342,
+"gov_parameter": "admin",
+"year": "2014",
+"gov_score":              6,
+"conservancy": "Sera",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 343,
+"gov_parameter": "admin",
+"year": "2014",
+"gov_score":             25,
+"conservancy": "West_Gate",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 344,
+"gov_parameter": "admin",
+"year": "2014",
+"gov_score":             31,
+"conservancy": "Leparua",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 345,
+"gov_parameter": "admin",
+"year": "2014",
+"gov_score":             24,
+"conservancy": "Nakuprat_Gotu",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 346,
+"gov_parameter": "admin",
+"year": "2014",
+"gov_score":             29,
+"conservancy": "Ndera",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 347,
+"gov_parameter": "admin",
+"year": "2014",
+"gov_score":             19,
+"conservancy": "Nasuulu",
+"percentage": 0.1481481481481 
+},
+{
+ "X": 348,
+"gov_parameter": "admin",
+"year": "2014",
+"gov_score":             28,
+"conservancy": "Shurr",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 349,
+"gov_parameter": "admin",
+"year": "2014",
+"gov_score":             14,
+"conservancy": "Songa",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 350,
+"gov_parameter": "admin",
+"year": "2014",
+"gov_score":             27,
+"conservancy": "Jaldessa",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 351,
+"gov_parameter": "admin",
+"year": "2014",
+"gov_score":             17,
+"conservancy": "Pate",
+"percentage": 0.1481481481481 
+},
+{
+ "X": 352,
+"gov_parameter": "admin",
+"year": "2014",
+"gov_score":             21,
+"conservancy": "Kiunga",
+"percentage": 0.1111111111111 
+},
+{
+ "X": 353,
+"gov_parameter": "admin",
+"year": "2014",
+"gov_score":             20,
+"conservancy": "Tana_River_Delta",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 354,
+"gov_parameter": "admin",
+"year": "2014",
+"gov_score":             18,
+"conservancy": "Hanshack_Nyogoro",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 355,
+"gov_parameter": "admin",
+"year": "2014",
+"gov_score":              8,
+"conservancy": "Awer",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 356,
+"gov_parameter": "transparency",
+"year": "2012",
+"gov_score":              9,
+"conservancy": "Biliqo_Bulesa",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 357,
+"gov_parameter": "transparency",
+"year": "2012",
+"gov_score":              8,
+"conservancy": "Il_Ngwesi",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 358,
+"gov_parameter": "transparency",
+"year": "2012",
+"gov_score":              5,
+"conservancy": "Ishaqbini",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 359,
+"gov_parameter": "transparency",
+"year": "2012",
+"gov_score":              6,
+"conservancy": "Kalama",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 360,
+"gov_parameter": "transparency",
+"year": "2012",
+"gov_score":              7,
+"conservancy": "Lekurruki",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 361,
+"gov_parameter": "transparency",
+"year": "2012",
+"gov_score":              4,
+"conservancy": "Ltungai",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 362,
+"gov_parameter": "transparency",
+"year": "2012",
+"gov_score":              3,
+"conservancy": "Meibae",
+"percentage": 0.3181818181818 
+},
+{
+ "X": 363,
+"gov_parameter": "transparency",
+"year": "2012",
+"gov_score":              9,
+"conservancy": "Melako",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 364,
+"gov_parameter": "transparency",
+"year": "2012",
+"gov_score":              8,
+"conservancy": "Mpus_Kutuk",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 365,
+"gov_parameter": "transparency",
+"year": "2012",
+"gov_score":              5,
+"conservancy": "Naibunga",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 366,
+"gov_parameter": "transparency",
+"year": "2012",
+"gov_score":              6,
+"conservancy": "Namunyak",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 367,
+"gov_parameter": "transparency",
+"year": "2012",
+"gov_score":              7,
+"conservancy": "Ngare_Ndare",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 368,
+"gov_parameter": "transparency",
+"year": "2012",
+"gov_score":              4,
+"conservancy": "Ruko",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 369,
+"gov_parameter": "transparency",
+"year": "2012",
+"gov_score":              3,
+"conservancy": "Sera",
+"percentage": 0.3181818181818 
+},
+{
+ "X": 370,
+"gov_parameter": "transparency",
+"year": "2012",
+"gov_score":              9,
+"conservancy": "West_Gate",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 371,
+"gov_parameter": "transparency",
+"year": "2012",
+"gov_score":              8,
+"conservancy": "Leparua",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 372,
+"gov_parameter": "transparency",
+"year": "2012",
+"gov_score":              5,
+"conservancy": "Nakuprat_Gotu",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 373,
+"gov_parameter": "transparency",
+"year": "2012",
+"gov_score":              6,
+"conservancy": "Ndera",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 374,
+"gov_parameter": "transparency",
+"year": "2012",
+"gov_score":              7,
+"conservancy": "Nasuulu",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 375,
+"gov_parameter": "transparency",
+"year": "2012",
+"gov_score":              4,
+"conservancy": "Shurr",
+"percentage": 0.09090909090909 
+},
+{
+ "X": 376,
+"gov_parameter": "transparency",
+"year": "2012",
+"gov_score":              3,
+"conservancy": "Songa",
+"percentage": 0.3181818181818 
+},
+{
+ "X": 377,
+"gov_parameter": "transparency",
+"year": "2012",
+"gov_score":              9,
+"conservancy": "Jaldessa",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 378,
+"gov_parameter": "transparency",
+"year": "2013",
+"gov_score":              8,
+"conservancy": "Biliqo_Bulesa",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 379,
+"gov_parameter": "transparency",
+"year": "2013",
+"gov_score":              6,
+"conservancy": "Il_Ngwesi",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 380,
+"gov_parameter": "transparency",
+"year": "2013",
+"gov_score":              5,
+"conservancy": "Ishaqbini",
+"percentage": 0.1818181818182 
+},
+{
+ "X": 381,
+"gov_parameter": "transparency",
+"year": "2013",
+"gov_score":             10,
+"conservancy": "Kalama",
+"percentage": 0.1818181818182 
+},
+{
+ "X": 382,
+"gov_parameter": "transparency",
+"year": "2013",
+"gov_score":              3,
+"conservancy": "Lekurruki",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 383,
+"gov_parameter": "transparency",
+"year": "2013",
+"gov_score":              7,
+"conservancy": "Ltungai",
+"percentage": 0.2727272727273 
+},
+{
+ "X": 384,
+"gov_parameter": "transparency",
+"year": "2013",
+"gov_score":              4,
+"conservancy": "Meibae",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 385,
+"gov_parameter": "transparency",
+"year": "2013",
+"gov_score":              8,
+"conservancy": "Melako",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 386,
+"gov_parameter": "transparency",
+"year": "2013",
+"gov_score":              6,
+"conservancy": "Mpus_Kutuk",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 387,
+"gov_parameter": "transparency",
+"year": "2013",
+"gov_score":              5,
+"conservancy": "Naibunga",
+"percentage": 0.1818181818182 
+},
+{
+ "X": 388,
+"gov_parameter": "transparency",
+"year": "2013",
+"gov_score":             10,
+"conservancy": "Namunyak",
+"percentage": 0.1818181818182 
+},
+{
+ "X": 389,
+"gov_parameter": "transparency",
+"year": "2013",
+"gov_score":              3,
+"conservancy": "Ngare_Ndare",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 390,
+"gov_parameter": "transparency",
+"year": "2013",
+"gov_score":              7,
+"conservancy": "Ruko",
+"percentage": 0.2727272727273 
+},
+{
+ "X": 391,
+"gov_parameter": "transparency",
+"year": "2013",
+"gov_score":              4,
+"conservancy": "Sera",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 392,
+"gov_parameter": "transparency",
+"year": "2013",
+"gov_score":              8,
+"conservancy": "West_Gate",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 393,
+"gov_parameter": "transparency",
+"year": "2013",
+"gov_score":              6,
+"conservancy": "Leparua",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 394,
+"gov_parameter": "transparency",
+"year": "2013",
+"gov_score":              5,
+"conservancy": "Nakuprat_Gotu",
+"percentage": 0.1818181818182 
+},
+{
+ "X": 395,
+"gov_parameter": "transparency",
+"year": "2013",
+"gov_score":             10,
+"conservancy": "Ndera",
+"percentage": 0.1818181818182 
+},
+{
+ "X": 396,
+"gov_parameter": "transparency",
+"year": "2013",
+"gov_score":              3,
+"conservancy": "Nasuulu",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 397,
+"gov_parameter": "transparency",
+"year": "2013",
+"gov_score":              7,
+"conservancy": "Shurr",
+"percentage": 0.2727272727273 
+},
+{
+ "X": 398,
+"gov_parameter": "transparency",
+"year": "2013",
+"gov_score":              4,
+"conservancy": "Songa",
+"percentage": 0.1363636363636 
+},
+{
+ "X": 399,
+"gov_parameter": "transparency",
+"year": "2013",
+"gov_score":              8,
+"conservancy": "Jaldessa",
+"percentage": 0.04545454545455 
+},
+{
+ "X": 400,
+"gov_parameter": "transparency",
+"year": "2014",
+"gov_score":             30,
+"conservancy": "Biliqo_Bulesa",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 401,
+"gov_parameter": "transparency",
+"year": "2014",
+"gov_score":             44,
+"conservancy": "Il_Ngwesi",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 402,
+"gov_parameter": "transparency",
+"year": "2014",
+"gov_score":             35,
+"conservancy": "Ishaqbini",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 403,
+"gov_parameter": "transparency",
+"year": "2014",
+"gov_score":             17,
+"conservancy": "Kalama",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 404,
+"gov_parameter": "transparency",
+"year": "2014",
+"gov_score":             40,
+"conservancy": "Lekurruki",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 405,
+"gov_parameter": "transparency",
+"year": "2014",
+"gov_score":             33,
+"conservancy": "Ltungai",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 406,
+"gov_parameter": "transparency",
+"year": "2014",
+"gov_score":             37,
+"conservancy": "Meibae",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 407,
+"gov_parameter": "transparency",
+"year": "2014",
+"gov_score":             31,
+"conservancy": "Melako",
+"percentage": 0.1111111111111 
+},
+{
+ "X": 408,
+"gov_parameter": "transparency",
+"year": "2014",
+"gov_score":             14,
+"conservancy": "Mpus_Kutuk",
+"percentage": 0.1851851851852 
+},
+{
+ "X": 409,
+"gov_parameter": "transparency",
+"year": "2014",
+"gov_score":             36,
+"conservancy": "Naibunga",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 410,
+"gov_parameter": "transparency",
+"year": "2014",
+"gov_score":             25,
+"conservancy": "Namunyak",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 411,
+"gov_parameter": "transparency",
+"year": "2014",
+"gov_score":             39,
+"conservancy": "Ngare_Ndare",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 412,
+"gov_parameter": "transparency",
+"year": "2014",
+"gov_score":             42,
+"conservancy": "Ruko",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 413,
+"gov_parameter": "transparency",
+"year": "2014",
+"gov_score":             34,
+"conservancy": "Sera",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 414,
+"gov_parameter": "transparency",
+"year": "2014",
+"gov_score":             32,
+"conservancy": "West_Gate",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 415,
+"gov_parameter": "transparency",
+"year": "2014",
+"gov_score":             29,
+"conservancy": "Leparua",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 416,
+"gov_parameter": "transparency",
+"year": "2014",
+"gov_score":             15,
+"conservancy": "Nakuprat_Gotu",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 417,
+"gov_parameter": "transparency",
+"year": "2014",
+"gov_score":             18,
+"conservancy": "Ndera",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 418,
+"gov_parameter": "transparency",
+"year": "2014",
+"gov_score":             16,
+"conservancy": "Nasuulu",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 419,
+"gov_parameter": "transparency",
+"year": "2014",
+"gov_score":             30,
+"conservancy": "Shurr",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 420,
+"gov_parameter": "transparency",
+"year": "2014",
+"gov_score":             44,
+"conservancy": "Songa",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 421,
+"gov_parameter": "transparency",
+"year": "2014",
+"gov_score":             35,
+"conservancy": "Jaldessa",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 422,
+"gov_parameter": "transparency",
+"year": "2014",
+"gov_score":             17,
+"conservancy": "Pate",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 423,
+"gov_parameter": "transparency",
+"year": "2014",
+"gov_score":             40,
+"conservancy": "Kiunga",
+"percentage": 0.07407407407407 
+},
+{
+ "X": 424,
+"gov_parameter": "transparency",
+"year": "2014",
+"gov_score":             33,
+"conservancy": "Tana_River_Delta",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 425,
+"gov_parameter": "transparency",
+"year": "2014",
+"gov_score":             37,
+"conservancy": "Hanshack_Nyogoro",
+"percentage": 0.03703703703704 
+},
+{
+ "X": 426,
+"gov_parameter": "transparency",
+"year": "2014",
+"gov_score":             31,
+"conservancy": "Awer",
+"percentage": 0.1111111111111 
+} 
+]
+  $scope.controls = [] 
+  $scope.filters = [
+ {
+ "variable": "year",
+"value": "2012" 
+},
+{
+ "variable": "year",
+"value": "2013" 
+},
+{
+ "variable": "year",
+"value": "2014" 
+} 
+]
+  
+  $scope.drawChart = function(){
+    drawChart($scope.opts, $scope.data)  
+  }
+  
+  $scope.$watch('selected', function(){
+    var keys = _.pluck($scope.selected, "variable")
+    var values = _.pluck($scope.selected, "value")
+    $scope.opts.selected = _.zipObject(keys, values)
+  }) 
+  
+  $scope.$watch('opts',function(){
+    $scope.drawChart()
+	}, true)
+}  
+
+function drawChart(opts, data){ 
+  if (Object.keys(opts.selected).length > 0){
+    data = _.filter(data, opts.selected)
+  }
+  
+  if(!(opts.type==="pieChart" || opts.type==="sparklinePlus" || opts.type==="bulletChart")) {
+    var data = d3.nest()
+      .key(function(d){
+        //return opts.group === undefined ? 'main' : d[opts.group]
+        //instead of main would think a better default is opts.x
+       return opts.group === undefined ? opts.y : d[opts.group];
+      }).entries(data);
+  }
+      
+  if (opts.disabled != undefined){
+    data.map(function(d, i){
+      d.disabled = opts.disabled[i]
+    })
+  }
+	
+	nv.addGraph(function() {
+		var chart = nv.models[opts.type]()
+			.x(function(d) { return d[opts.x] })
+			.y(function(d) { return d[opts.y] })
+			.width(opts.width)
+			.height(opts.height)
+		
+	chart
+  .color([ "#67000D", "#CB181D", "#FB6A4A", "#FCBBA1", "#FFF5F0", "#E5E5E5" ])
+          
+	
+
+	
+	
+	
+
+	d3.select("#" + opts.id + ' svg')
+  // .empty()
+		.datum(data)
+		.transition().duration(500)
+		.call(chart);
+	
+	 nv.utils.windowResize(chart.update);
+	 return chart;
+  });
+};
+</script>
+    
+  </body>
+</html>
